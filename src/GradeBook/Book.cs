@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-        class Book
+        // internal is the default access modifier, but that won't let us use it in other projects. If we want to use it in our test project we need to make it a public class
+        public class Book
     {
         // constructor method must have same name as class and no return type. It is optional
         public Book(string name)
@@ -24,24 +25,46 @@ namespace GradeBook
             }
         }
 
-        public void ShowStats() 
+        public void AddGrades(List<double> multipleGrades)
         {
-            var average = 0.0;
-            var lowGrade = double.MaxValue;
-            var highGrade = double.MinValue;
+            foreach (var grade in multipleGrades) {
+                if (grade > 0 && grade < 100) {
+                    grades.Add(grade);
+                    Console.WriteLine($"{grade} added to gradebook {name}");
+                } else {
+                    Console.WriteLine($"{grade} is out of bounds and was not added");
+                }
+            }
+        }
+
+        public List<double> ShowGrades()
+        {
+            Console.WriteLine(string.Format($"The current grades in gradebook {0} are ({1})", name, string.Join(", ", grades)));
+            
+            return grades;
+        }
+
+        public Statistics GetStatistics() 
+        {
+            var result = new Statistics();
+            result.Average = 0.0;
+            result.Low = double.MaxValue;
+            result.High = double.MinValue;
 
             foreach (var grade in grades) {
-                lowGrade = Math.Min(grade, lowGrade);
-                highGrade = Math.Max(grade, highGrade);
-                average += grade;
+                result.Low = Math.Min(grade, result.Low);
+                result.High = Math.Max(grade, result.High);
+                result.Average += grade;
 
             }
-            average /= grades.Count;
+            result.Average /= grades.Count;
 
+            // old code
+            // Console.WriteLine($"The highest grade is {result.High}");
+            // Console.WriteLine($"The average grade is {result.Average:N1}");
+            // Console.WriteLine($"The lowest grade is {result.Low}");
 
-            Console.WriteLine($"The highest grade is {highGrade}");
-            Console.WriteLine($"The average grade is {average:N1}");
-            Console.WriteLine($"The lowest grade is {lowGrade}");
+            return result;
         }
         // to add state we will use a field.
         // a field can be added in the class
