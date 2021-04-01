@@ -59,16 +59,12 @@ namespace GradeBook
             }
             result.Average /= grades.Count;
 
-            // old code
-            // Console.WriteLine($"The highest grade is {result.High}");
-            // Console.WriteLine($"The average grade is {result.Average:N1}");
-            // Console.WriteLine($"The lowest grade is {result.Low}");
-
             return result;
         }
         // to add state we will use a field.
         // a field can be added in the class
         // implicit typing (var) does not work with fields.
+    
         private List<double> grades;
         private string name;
     }

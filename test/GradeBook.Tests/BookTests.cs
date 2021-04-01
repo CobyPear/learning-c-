@@ -43,20 +43,5 @@ namespace GradeBook.Tests
             Assert.Equal(77.3, result.Low);
             
         }
-        // public void Test1()
-        // {
-        //     // arrange
-        //     var book = new Book("Test Book");
-        //     List<double> grades = new List<double>() { 50.7, 90.2, -3.4, 100.1, 99, 14, 85 };
-
-        //     List<double> expected = new List<double>() { 50.7, 90.2, 99, 14, 85 };
-
-        //     // act
-        //     book.AddGrades(grades);
-
-        //     // assert
-        //     Assert.Equal(book.ShowGrades(), expected);
-            
-        // }
     }
 }
